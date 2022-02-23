@@ -23,7 +23,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     int foodY;
     Random random = new Random();
     Random num = new Random();
-    Random num2 = new Random();
     ImageIcon imageIcon = Data.food;
 
     public GamePanel() {
@@ -76,9 +75,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         imageIcon.paintIcon(this, g, foodX, foodY);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("状態",Font.BOLD,18));
-        g.drawString("長さ"+lenth,750,35);
-        g.drawString("スコア"+score,750,50);
+        g.setFont(new Font("状態", Font.BOLD, 18));
+        g.drawString("長さ" + lenth, 750, 35);
+        g.drawString("スコア" + score, 750, 50);
 
         if (isStart == false) {
             g.setColor(Color.WHITE);
@@ -158,39 +157,52 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             }
 
             if (snakeX[0] == foodX && snakeY[0] == foodY) {
-                lenth++;
+                if (Data.food.equals(imageIcon)) {
+                    score += 10;
+                    lenth += 1;
+                } else if (Data.watermelon.equals(imageIcon)) {
+                    score += 30;
+                    lenth += 3;
+                } else if (Data.bomb.equals(imageIcon)) {
+                    score -= 10;
+                    lenth -= 1;
+                } else if (Data.apple.equals(imageIcon)) {
+                    score += 50;
+                    lenth += 2;
+                } else if (Data.death.equals(imageIcon)) {
+                    score = 0;
+                    lenth = 0;
+                    isFail = true;
+                } else if (Data.strawberry.equals(imageIcon)) {
+                    score += 20;
+                    lenth += 2;
+                }
 
-                score+=10;
-
-                int nums = num.nextInt(4);
-                int nums2 = num2.nextInt(2);
+                int nums = num.nextInt(6);
                 if (nums == 1) {
                     imageIcon = Data.food;
                 } else if (nums == 2) {
-                    if (nums2 == 1){
-                        imageIcon = Data.watermelon;
-                    }else if (nums2 == 2){
-                        imageIcon = Data.strawberry;
-                    }
+                    imageIcon = Data.watermelon;
                 } else if (nums == 3) {
-                     imageIcon = Data.bomb;
+                    imageIcon = Data.bomb;
                 } else if (nums == 4) {
-                    if (nums2 == 1){
-                        imageIcon = Data.apple;
-                    }else if (nums2 == 2){
-                        imageIcon = Data.death;
-                    }
+                    imageIcon = Data.apple;
+                } else if (nums == 5) {
+                    imageIcon = Data.death;
+                } else if (nums == 6) {
+                    imageIcon = Data.strawberry;
                 }
 
                 //
 
 
+                //test
                 foodX = 25 + 25 * random.nextInt(34);
                 foodY = 75 + 25 * random.nextInt(24);
             }
 
-            for (int i = 1; i < lenth; i++){
-                if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]){
+            for (int i = 1; i < lenth; i++) {
+                if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]) {
                     isFail = true;
                 }
             }
