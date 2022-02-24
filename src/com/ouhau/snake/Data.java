@@ -16,7 +16,7 @@ public class Data {
     public static URL appleURL = Data.class.getResource("/statics/food/apple.png");
     public static URL deathURL = Data.class.getResource("/statics/food/death.png");
     public static URL strawberryURL = Data.class.getResource("/statics/food/strawberry.jpg");
-    //head
+    //dd
     public static ImageIcon header = new ImageIcon(headerURL);
     public static ImageIcon up = new ImageIcon(upUrl);
     public static ImageIcon down = new ImageIcon(downURL);
