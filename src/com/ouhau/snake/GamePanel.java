@@ -183,6 +183,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                 }
 
                 //
+
+
                 foodX = 25 + 25 * random.nextInt(34);
                 foodY = 75 + 25 * random.nextInt(24);
             }
