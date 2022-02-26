@@ -63,7 +63,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         timer = new Timer(delay, this);
 
     }
-
+    
     boolean isFail = false;
 
     public void init() {
