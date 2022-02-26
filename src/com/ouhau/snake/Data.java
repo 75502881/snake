@@ -16,7 +16,8 @@ public class Data {
     public static URL appleURL = Data.class.getResource("/statics/food/apple.png");
     public static URL deathURL = Data.class.getResource("/statics/food/death.png");
     public static URL strawberryURL = Data.class.getResource("/statics/food/strawberry.jpg");
-    //head
+    public static URL chillSoundURL = Data.class.getResource("/statics/sound/Chill.wav");
+    public static URL popSoundURL = Data.class.getResource("/statics/sound/Pop.wav");
     public static ImageIcon header = new ImageIcon(headerURL);
     public static ImageIcon up = new ImageIcon(upUrl);
     public static ImageIcon down = new ImageIcon(downURL);
@@ -29,5 +30,4 @@ public class Data {
     public static ImageIcon apple = new ImageIcon(appleURL);
     public static ImageIcon death = new ImageIcon(deathURL);
     public static ImageIcon strawberry = new ImageIcon(strawberryURL);
-
 }

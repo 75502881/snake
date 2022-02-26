@@ -9,34 +9,66 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
-
     int lenth;
     int score;
+    int delay = 100;
     int[] snakeX = new int[600];
     int[] snakeY = new int[600];
     String fx;
 
+    JLabel label;
+    JButton button1;
+    JButton button2;
+    JButton button3;
+
     boolean isStart = false;
-    Timer timer = new Timer(100, this);
+    Timer timer = null;
 
     int foodX;
     int foodY;
     Random random = new Random();
     Random num = new Random();
-    Random num2 = new Random();
     ImageIcon imageIcon = Data.food;
 
     public GamePanel() {
         init();
+        this.setLayout(null);
+
+        button1 = new JButton("遅い");
+        button1.setBounds(100, 100, 200, 50);
+
+        button2 = new JButton("普通");
+        button2.setBounds(350, 100, 200, 50);
+
+        button3 = new JButton("速い");
+        button3.setBounds(600, 100, 200, 50);
+
+        button1.addActionListener(this);
+        button1.setFocusable(false);
+        button1.setActionCommand("slow");
+
+        button2.addActionListener(this);
+        button2.setFocusable(false);
+        button2.setActionCommand("usually");
+
+        button3.addActionListener(this);
+        button3.setFocusable(false);
+        button3.setActionCommand("quick");
+
+        this.add(button1);
+        this.add(button2);
+        this.add(button3);
         this.setFocusable(true);
         this.addKeyListener(this);
-        timer.start();
+        timer = new Timer(delay, this);
+
     }
 
     boolean isFail = false;
 
     public void init() {
         lenth = 3;
+        delay = 100;
         snakeX[0] = 100;
         snakeY[0] = 100;
         snakeX[1] = 75;
@@ -76,14 +108,15 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         imageIcon.paintIcon(this, g, foodX, foodY);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("状態",Font.BOLD,18));
-        g.drawString("長さ"+lenth,750,35);
-        g.drawString("スコア"+score,750,50);
+        g.setFont(new Font("状態", Font.BOLD, 18));
+        g.drawString("長さ" + lenth, 750, 35);
+        g.drawString("スコア" + score, 750, 50);
 
         if (isStart == false) {
             g.setColor(Color.WHITE);
-            g.setFont(new Font("sanke Game", Font.BOLD, 40));
+            g.setFont(new Font("snake Game", Font.BOLD, 40));
             g.drawString("スペースでスタート", 300, 300);
+
         }
 
         if (isFail) {
@@ -103,6 +136,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         int kyeCode = e.getKeyCode();
 
         if (kyeCode == KeyEvent.VK_SPACE) {
+            button1.setVisible(false);
+            button2.setVisible(false);
+            button3.setVisible(false);
+
             if (isFail) {
                 isFail = false;
                 init();
@@ -125,10 +162,30 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String cmd = e.getActionCommand();
+
+        if (cmd != null) {
+            if (cmd.equals("slow")) {
+                delay = 500;
+            } else if (cmd.equals("usually")) {
+                delay = 200;
+            } else if (cmd.equals("quick")) {
+                delay = 150;
+            }
+            timer = new Timer(delay, this);
+            timer.start();
+        }
+        startGame();
+
+    }
+
+
+    public void startGame() {
         if (isStart && isFail == false) {
             for (int i = lenth - 1; i > 0; i--) {
                 snakeX[i] = snakeX[i - 1];
@@ -158,37 +215,49 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             }
 
             if (snakeX[0] == foodX && snakeY[0] == foodY) {
-                lenth++;
+                if (Data.food.equals(imageIcon)) {
+                    score += 10;
+                    lenth += 1;
+                } else if (Data.watermelon.equals(imageIcon)) {
+                    score += 30;
+                    lenth += 3;
+                } else if (Data.bomb.equals(imageIcon)) {
+                    score -= 10;
+                    lenth -= 1;
+                } else if (Data.apple.equals(imageIcon)) {
+                    score += 50;
+                    lenth += 2;
+                } else if (Data.death.equals(imageIcon)) {
+                    score = 0;
+                    lenth = 0;
+                    isFail = true;
+                } else if (Data.strawberry.equals(imageIcon)) {
+                    score += 20;
+                    lenth += 2;
+                }
+                Sound.playback(Data.popSoundURL.getFile(), 100, false);
 
-                score+=10;
-
-                int nums = num.nextInt(4);
-                int nums2 = num2.nextInt(2);
+                int nums = num.nextInt(6);
                 if (nums == 1) {
                     imageIcon = Data.food;
                 } else if (nums == 2) {
-                    if (nums2 == 1){
-                        imageIcon = Data.watermelon;
-                    }else if (nums2 == 2){
-                        imageIcon = Data.strawberry;
-                    }
+                    imageIcon = Data.watermelon;
                 } else if (nums == 3) {
-                     imageIcon = Data.bomb;
+                    imageIcon = Data.bomb;
                 } else if (nums == 4) {
-                    if (nums2 == 1){
-                        imageIcon = Data.apple;
-                    }else if (nums2 == 2){
-                        imageIcon = Data.death;
-                    }
+                    imageIcon = Data.apple;
+                } else if (nums == 5) {
+                    imageIcon = Data.death;
+                } else if (nums == 6) {
+                    imageIcon = Data.strawberry;
                 }
 
-                //
                 foodX = 25 + 25 * random.nextInt(34);
                 foodY = 75 + 25 * random.nextInt(24);
             }
 
-            for (int i = 1; i < lenth; i++){
-                if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]){
+            for (int i = 1; i < lenth; i++) {
+                if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]) {
                     isFail = true;
                 }
             }
