@@ -173,9 +173,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             if (cmd.equals("slow")) {
                 delay = 300;
             } else if (cmd.equals("usually")) {
-                delay = 150;
+                delay = 200;
             } else if (cmd.equals("quick")) {
-                delay = 90;
+                delay = 160;
             }
             timer = new Timer(delay, this);
             timer.start();
