@@ -15,6 +15,9 @@ public class Data {
     public static URL bombURL = Data.class.getResource("/statics/food/bomb.png");
     public static URL appleURL = Data.class.getResource("/statics/food/apple.png");
     public static URL deathURL = Data.class.getResource("/statics/food/death.png");
+    public static URL ForestURL = Data.class.getResource("/statics/dearSir/Forest.png");
+    public static URL GardenRockURL = Data.class.getResource("/statics/dearSir/GardenRock.png");
+    public static URL XyGridURL = Data.class.getResource("/statics/dearSir/Xygrid.png");
     public static URL strawberryURL = Data.class.getResource("/statics/food/strawberry.jpg");
     public static URL chillSoundURL = Data.class.getResource("/statics/sound/Chill.wav");
     public static URL popSoundURL = Data.class.getResource("/statics/sound/Pop.wav");
@@ -30,4 +33,7 @@ public class Data {
     public static ImageIcon apple = new ImageIcon(appleURL);
     public static ImageIcon death = new ImageIcon(deathURL);
     public static ImageIcon strawberry = new ImageIcon(strawberryURL);
+    public static ImageIcon Forest = new ImageIcon(ForestURL);
+    public static ImageIcon GardenRock = new ImageIcon(GardenRockURL);
+    public static ImageIcon XyGrid = new ImageIcon(XyGridURL);
 }

@@ -63,7 +63,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         timer = new Timer(delay, this);
 
     }
-    
+
     boolean isFail = false;
 
     public void init() {
@@ -171,11 +171,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
         if (cmd != null) {
             if (cmd.equals("slow")) {
-                delay = 500;
+                delay = 300;
             } else if (cmd.equals("usually")) {
-                delay = 200;
-            } else if (cmd.equals("quick")) {
                 delay = 150;
+            } else if (cmd.equals("quick")) {
+                delay = 90;
             }
             timer = new Timer(delay, this);
             timer.start();
