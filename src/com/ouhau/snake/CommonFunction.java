@@ -1,9 +1,11 @@
 package com.ouhau.snake;
 
-import com.ouhau.snake.GamePanel.*;
+import javax.swing.*;
 
-public class function {
-    public static void isVisible(boolean bool){
-
+public class CommonFunction {
+    public static void isVisible(JButton button1,JButton button2,JButton button3,boolean isFlg){
+        button1.setVisible(isFlg);
+        button2.setVisible(isFlg);
+        button3.setVisible(isFlg);
     }
 }

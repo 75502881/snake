@@ -9,8 +9,11 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
-    int lenth;
+
+    int length;
     int score;
+    int judgment = 1;
+    int isBegin = 10;
     int delay = 100;
     int[] snakeX = new int[600];
     int[] snakeY = new int[600];
@@ -67,8 +70,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     boolean isFail = false;
 
     public void init() {
-        lenth = 3;
-        delay = 100;
+        delay = 0;
+        length = 3;
         snakeX[0] = 100;
         snakeY[0] = 100;
         snakeX[1] = 75;
@@ -102,27 +105,32 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             Data.down.paintIcon(this, g, snakeX[0], snakeY[0]);
         }
 
-        for (int i = 1; i < lenth; i++) {
+        for (int i = 1; i < length; i++) {
             Data.body.paintIcon(this, g, snakeX[i], snakeY[i]);
         }
         imageIcon.paintIcon(this, g, foodX, foodY);
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("状態", Font.BOLD, 18));
-        g.drawString("長さ" + lenth, 750, 35);
+        g.drawString("長さ" + length, 750, 35);
         g.drawString("スコア" + score, 750, 50);
 
         if (isStart == false) {
             g.setColor(Color.WHITE);
             g.setFont(new Font("snake Game", Font.BOLD, 40));
             g.drawString("スペースでスタート", 300, 300);
-
         }
 
         if (isFail) {
+            judgment = 0;
             g.setColor(Color.RED);
-            g.setFont(new Font("sanke Game", Font.BOLD, 40));
+            g.setFont(new Font("snake Game", Font.BOLD, 40));
             g.drawString("死んでしまった", 300, 300);
+            init();
+        }
+
+        if (judgment != 1){
+            CommonFunction.isVisible(button1, button2, button3, false);
         }
 
     }
@@ -136,9 +144,17 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         int kyeCode = e.getKeyCode();
 
         if (kyeCode == KeyEvent.VK_SPACE) {
-            button1.setVisible(false);
-            button2.setVisible(false);
-            button3.setVisible(false);
+            if (isFail) {
+                CommonFunction.isVisible(button1, button2, button3, true);
+            } else if (isBegin == 10) {
+                isBegin = 0;
+                CommonFunction.isVisible(button1, button2, button3, true);
+                if (kyeCode == KeyEvent.VK_SPACE) {
+                    CommonFunction.isVisible(button1, button2, button3, false);
+                }
+            } else if (isFail != true || isBegin != 10) {
+                CommonFunction.isVisible(button1, button2, button3, false);
+            }
 
             if (isFail) {
                 isFail = false;
@@ -187,7 +203,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     public void startGame() {
         if (isStart && isFail == false) {
-            for (int i = lenth - 1; i > 0; i--) {
+            for (int i = length - 1; i > 0; i--) {
                 snakeX[i] = snakeX[i - 1];
                 snakeY[i] = snakeY[i - 1];
             }
@@ -217,23 +233,23 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             if (snakeX[0] == foodX && snakeY[0] == foodY) {
                 if (Data.food.equals(imageIcon)) {
                     score += 10;
-                    lenth += 1;
+                    length += 1;
                 } else if (Data.watermelon.equals(imageIcon)) {
                     score += 30;
-                    lenth += 3;
+                    length += 3;
                 } else if (Data.bomb.equals(imageIcon)) {
                     score -= 10;
-                    lenth -= 1;
+                    length -= 1;
                 } else if (Data.apple.equals(imageIcon)) {
                     score += 50;
-                    lenth += 2;
+                    length += 2;
                 } else if (Data.death.equals(imageIcon)) {
                     score = 0;
-                    lenth = 0;
+                    length = 0;
                     isFail = true;
                 } else if (Data.strawberry.equals(imageIcon)) {
                     score += 20;
-                    lenth += 2;
+                    length += 2;
                 }
                 Sound.playback(Data.popSoundURL.getFile(), 100, false);
 
@@ -256,15 +272,22 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                 foodY = 75 + 25 * random.nextInt(24);
             }
 
-            for (int i = 1; i < lenth; i++) {
+            for (int i = 1; i < length; i++) {
                 if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]) {
                     isFail = true;
                 }
+                isDeath();
             }
 
             repaint();
         }
         timer.start();
+    }
+
+    public void isDeath() {
+        if (snakeX[0] >= 850 || snakeY[0] >= 650) {
+            isFail = true;
+        }
     }
 }
 
