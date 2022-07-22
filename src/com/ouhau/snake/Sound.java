@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 public class Sound {
     public static void playback(String filePath, long millis,boolean isLoop) {
         while (isLoop) {
+            //sound Play
             Clip clip = Sound.soundPlayback(new File(filePath));
             clip.start();
             try {
@@ -18,7 +19,7 @@ public class Sound {
         }
     }
 
-
+    //sound Play method
     public static Clip soundPlayback(File path) {
         try (AudioInputStream ais = AudioSystem.getAudioInputStream(path)) {
 

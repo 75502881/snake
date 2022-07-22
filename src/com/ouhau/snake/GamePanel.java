@@ -10,29 +10,53 @@ import java.util.Random;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
+    //Judgment of length
     int length;
+
+    //judgment of score
     int score;
+
+    //decision
     int judgment = 1;
     int isBegin = 10;
-    int delay = 100;
+
+    //snake speed
+    int delay;
+
+    //snake x and y
     int[] snakeX = new int[600];
     int[] snakeY = new int[600];
+
+    //Head direction
     String fx;
 
-    JLabel label;
+    //The speed button1
     JButton button1;
+
+    //The speed button2
     JButton button2;
+
+    //The speed button3
     JButton button3;
 
+    //Judgment whether it is a start
     boolean isStart = false;
+
+    //Timer judgment
     Timer timer = null;
 
+    //food x and y
     int foodX;
     int foodY;
+
+    //Random number of food
     Random random = new Random();
     Random num = new Random();
+
+    //Food data
     ImageIcon imageIcon = Data.food;
 
+    //game variable setup constructor
     public GamePanel() {
         init();
         this.setLayout(null);
@@ -67,9 +91,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     }
 
+    //Judgment of Death
     boolean isFail = false;
 
+    //variable setup function
     public void init() {
+        judgment = 1;
+        isBegin = 10;
         delay = 0;
         length = 3;
         snakeX[0] = 100;
@@ -86,6 +114,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         score = 0;
     }
 
+    //paint food and Font and button
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -139,13 +168,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     public void keyTyped(KeyEvent e) {
     }
 
+
     @Override
     public void keyPressed(KeyEvent e) {
         int kyeCode = e.getKeyCode();
 
         if (kyeCode == KeyEvent.VK_SPACE) {
             if (isFail) {
-                CommonFunction.isVisible(button1, button2, button3, true);
+                CommonFunction.isVisible(button1, button2, button3, false);
             } else if (isBegin == 10) {
                 isBegin = 0;
                 CommonFunction.isVisible(button1, button2, button3, true);
@@ -245,7 +275,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     length += 2;
                 } else if (Data.death.equals(imageIcon)) {
                     score = 0;
-                    length = 0;
                     isFail = true;
                 } else if (Data.strawberry.equals(imageIcon)) {
                     score += 20;
