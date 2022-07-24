@@ -56,6 +56,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     //Food data
     ImageIcon imageIcon = Data.food;
 
+    public void Dead(){
+        isFail = true;
+    }
+
     //game variable setup constructor
     public GamePanel() {
         init();
@@ -164,10 +168,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     }
 
+    @Deprecated
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -206,6 +210,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+    @Deprecated
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -303,7 +308,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
             for (int i = 1; i < length; i++) {
                 if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i]) {
-                    isFail = true;
+                    Dead();
                 }
                 isDeath();
             }
@@ -315,7 +320,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     public void isDeath() {
         if (snakeX[0] >= 850 || snakeY[0] >= 650) {
-            isFail = true;
+           Dead();
         }
     }
 }
