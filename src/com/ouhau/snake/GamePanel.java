@@ -67,8 +67,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     }
 
     //Don't use this!!
+    //This will be delete!!
     @Deprecated
-    public void Fail(){
+    public void kill(){
         Dead();
     }
 
