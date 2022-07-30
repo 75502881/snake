@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Sound {
+
     public static void playback(URL filePath, long millis, boolean isLoop) throws URISyntaxException {
         while (isLoop) {
 
@@ -32,13 +33,9 @@ public class Sound {
     public static Clip soundPlayback(File path) {
         System.out.println("path:"+path);
         try (AudioInputStream ais = AudioSystem.getAudioInputStream(path)) {
-
             AudioFormat af = ais.getFormat();
-
             DataLine.Info dataLine = new DataLine.Info(Clip.class, af);
-
             Clip c = (Clip) AudioSystem.getLine(dataLine);
-
             c.open(ais);
 
             return c;

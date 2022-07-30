@@ -32,6 +32,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     //Head direction
     String fx;
 
+    //Log count
+    int count = 0;
+
     //The speed button1
     JButton button1;
 
@@ -63,10 +66,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         isFail = true;
     }
 
+    //Don't use this!!
     @Deprecated
     public void Fail(){
         Dead();
     }
+
     //game variable setup constructor
     public GamePanel() {
         init();
@@ -167,6 +172,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             g.setFont(new Font("snake Game", Font.BOLD, 40));
             g.drawString("死んでしまった", 300, 300);
             init();
+            count++;
+            System.out.println("Log INFO"+ count+ ":" + "you died");
         }
 
         if (judgment != 1){
@@ -177,6 +184,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+
     }
 
     @Override
@@ -275,21 +283,32 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                 if (Data.food.equals(imageIcon)) {
                     score += 10;
                     length += 1;
+                    count++;
+                    System.out.println("Log INFO"+ count+ ":" +"data: food; score: "+ score +"; length: "+ length +";");
                 } else if (Data.watermelon.equals(imageIcon)) {
                     score += 30;
                     length += 3;
+                    count++;
+                    System.out.println("Log INFO"+ count+ ":" +"data: watermelon; score: "+ score +"; length: "+ length +";");
                 } else if (Data.bomb.equals(imageIcon)) {
                     score -= 10;
                     length -= 1;
+                    count++;
+                    System.out.println("Log INFO"+ count+ ":" +"data: bomb; score: "+ score +"; length: "+ length +";");
                 } else if (Data.apple.equals(imageIcon)) {
                     score += 50;
                     length += 2;
+                    count++;
+                    System.out.println("Log INFO"+ count+ ":" +"data: apple; score: "+ score +"; length: "+ length +";");
                 } else if (Data.death.equals(imageIcon)) {
-                    score = 0;
+                    init();
                     Dead();
+                    count++;
+                    System.out.println("Log INFO"+ count+ ":" +"data: you died; score: "+ score +"; length: "+ length +";");
                 } else if (Data.strawberry.equals(imageIcon)) {
                     score += 20;
                     length += 2;
+                    System.out.println("Log INFO"+ count+ ":" +"data: strawberry; score: "+ score +"; length: "+ length +";");
                 }
                 try {
                     Sound.playback(Data.chillSoundURL, 100, false);

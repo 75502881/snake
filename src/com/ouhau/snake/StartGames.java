@@ -1,7 +1,6 @@
 package com.ouhau.snake;
 
 import javax.swing.*;
-import java.net.URI;
 import java.net.URISyntaxException;
 
 public class StartGames {
