@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
@@ -56,10 +58,15 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     //Food data
     ImageIcon imageIcon = Data.food;
 
+    //snake die code
     public void Dead(){
         isFail = true;
     }
 
+    @Deprecated
+    public void Fail(){
+        Dead();
+    }
     //game variable setup constructor
     public GamePanel() {
         init();
@@ -168,7 +175,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     }
 
-    @Deprecated
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -210,7 +216,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         }
     }
 
-    @Deprecated
+
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -280,12 +286,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     length += 2;
                 } else if (Data.death.equals(imageIcon)) {
                     score = 0;
-                    isFail = true;
+                    Dead();
                 } else if (Data.strawberry.equals(imageIcon)) {
                     score += 20;
                     length += 2;
                 }
-                Sound.playback(Data.popSoundURL.getFile(), 100, false);
+                try {
+                    Sound.playback(Data.chillSoundURL, 100, false);
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
 
                 int nums = num.nextInt(6);
                 if (nums == 1) {

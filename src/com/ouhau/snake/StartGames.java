@@ -1,9 +1,12 @@
 package com.ouhau.snake;
 
 import javax.swing.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class StartGames {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException {
+        System.out.println();
         JFrame frame = new JFrame("欧がゲームで遊ぶ");
         frame.setBounds(10, 10, 900, 720);
         frame.setResizable(false);
@@ -12,6 +15,6 @@ public class StartGames {
 
         frame.add(jPanel);
         frame.setVisible(true);
-        Sound.playback(Data.chillSoundURL.getFile(), 8000, true);
+        Sound.playback(Data.chillSoundURL, 8000, true);
     }
 }
