@@ -9,14 +9,18 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Sound {
+    String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 
-    public static void playback(URL filePath, long millis, boolean isLoop) throws URISyntaxException {
+    public  void playback(String filePath, long millis, boolean isLoop) throws URISyntaxException {
         while (isLoop) {
 
             String url = filePath.toString();
-            URI uri = new URI(url.replaceAll("jar:", ""));
-            File file = new File(uri);
-
+            path = path.replaceAll("snakeGame\\.jar","Chill.wav");
+            System.out.println("this jar path:="+path);
+            File file = new File(path);
+            if (file == null || !file.exists() || file.isDirectory()){
+                file = new File(filePath);
+            }
             //System.out.println(uri);
             //sound Play
             Clip clip = Sound.soundPlayback(file);
@@ -29,8 +33,10 @@ public class Sound {
         }
     }
 
+
     //sound Play method
     public static Clip soundPlayback(File path) {
+
         System.out.println("path:"+path);
         try (AudioInputStream ais = AudioSystem.getAudioInputStream(path)) {
             AudioFormat af = ais.getFormat();

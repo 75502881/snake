@@ -14,6 +14,7 @@ public class StartGames {
 
         frame.add(jPanel);
         frame.setVisible(true);
-        Sound.playback(Data.chillSoundURL, 8000, true);
+        Sound sound = new Sound();
+        sound.playback(Data.chillSoundURL.getFile(), 8000, true);
     }
 }

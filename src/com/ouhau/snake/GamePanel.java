@@ -156,7 +156,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         }
         imageIcon.paintIcon(this, g, foodX, foodY);
 
-        g.setColor(Color.WHITE);
+        g.setColor(Color.black);
         g.setFont(new Font("状態", Font.BOLD, 18));
         g.drawString("長さ" + length, 750, 35);
         g.drawString("スコア" + score, 750, 50);
@@ -312,7 +312,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     System.out.println("Log INFO"+ count+ ":" +"data: strawberry; score: "+ score +"; length: "+ length +";");
                 }
                 try {
-                    Sound.playback(Data.chillSoundURL, 100, false);
+                    Sound sound= new Sound();
+                    sound.playback(Data.chillSoundURL.getFile(), 100, false);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
