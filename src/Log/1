@@ -1,0 +1,42 @@
+2022/7/29
+17:09	Download pre-built shared indexes
+			Reduce the indexing time and CPU load with pre-built JDK shared indexes
+			Always download
+			Download once
+			Don't show again
+			Configure...
+
+17:09	Localized IntelliJ IDEA 2021.3.3 is available
+			Switch and restart
+
+20:11	Low disk space on a IntelliJ IDEA system directory partition: C:\Users\oushu\AppData\Local\JetBrains\IntelliJIdea2021.3
+
+2022/7/30
+14:11	Build completed successfully in 6 sec, 364 ms
+
+14:33	3 files committed: いらないメソッドに'@Deprecated(使わないでください)'を追加した.
+
+14:33	Push failed
+			remote: No anonymous write access.
+			Authentication failed for 'https://github.com/75502881/snake.git/'
+			Show details in console
+
+14:50	Build completed successfully in 3 sec, 503 ms
+
+14:51	Build completed successfully in 2 sec, 975 ms
+
+15:31	3 files committed: いらないメソッドに'@Deprecated(使わないでください)'を追加した.
+
+15:32	Push failed
+			remote: No anonymous write access.
+			Authentication failed for 'https://github.com/75502881/snake.git/'
+			Show details in console
+
+20:45	1 file committed: いらないメソッドに'@Deprecated(使わないでください)'を追加した.
+
+20:46	Push failed
+			remote: No anonymous write access.
+			Authentication failed for 'https://github.com/75502881/snake.git/'
+			Show details in console
+
+20:50	Build completed successfully in 6 sec, 708 ms
