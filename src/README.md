@@ -1,7 +1,7 @@
 # SnakeGame
 
 <p>
-    <a href="https://github.com/75502881/snake/tree/v4.0/src/statics">Go to download site</a>
+    <a href="https://github.com/75502881/snake">Go to download site</a>
 </p>
 
 ### How to play?
