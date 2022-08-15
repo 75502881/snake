@@ -4,14 +4,12 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 public class Sound {
     String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 
-    public  void playback(String filePath, long millis, boolean isLoop) throws URISyntaxException {
+    public void playback(String filePath, long millis, boolean isLoop) throws URISyntaxException {
         while (isLoop) {
 
             String url = filePath.toString();
@@ -33,6 +31,25 @@ public class Sound {
         }
     }
 
+    public void playback2(String filePath, long millis) throws URISyntaxException {
+
+            String url = filePath.toString();
+            path = path.replaceAll("snakeGame\\.jar","Chill.wav");
+            System.out.println("this jar path:="+path);
+            File file = new File(path);
+            if (file == null || !file.exists() || file.isDirectory()){
+                file = new File(filePath);
+            }
+            //System.out.println(uri);
+            //sound Play
+            Clip clip = Sound.soundPlayback(file);
+            clip.start();
+            try {
+                Thread.sleep(millis);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    }
 
     //sound Play method
     public static Clip soundPlayback(File path) {

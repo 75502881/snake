@@ -6,9 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Random;
+import com.ouhau.snake.CommonFunction.*;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
@@ -62,14 +61,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     ImageIcon imageIcon = Data.food;
 
     //snake die code
-    public void Dead(){
+    public void Dead() {
         isFail = true;
     }
 
     //Don't use this!!
     //This will be delete!!
     @Deprecated
-    public void kill(){
+    public void kill() {
         Dead();
     }
 
@@ -174,10 +173,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             g.drawString("死んでしまった", 300, 300);
             init();
             count++;
-            System.out.println("Log INFO"+ count+ ":" + "you died");
+            System.out.println("Log INFO" + count + ":" + "you died");
         }
 
-        if (judgment != 1){
+        if (judgment != 1) {
             CommonFunction.isVisible(button1, button2, button3, false);
         }
 
@@ -239,7 +238,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             if (cmd.equals("slow")) {
                 delay = 300;
             } else if (cmd.equals("usually")) {
-                delay = 200;
+                delay = 250;
             } else if (cmd.equals("quick")) {
                 delay = 160;
             }
@@ -282,40 +281,40 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
             if (snakeX[0] == foodX && snakeY[0] == foodY) {
                 if (Data.food.equals(imageIcon)) {
+                    CommonFunction.popSound();
                     score += 10;
                     length += 1;
                     count++;
-                    System.out.println("Log INFO"+ count+ ":" +"data: food; score: "+ score +"; length: "+ length +";");
+                    System.out.println("Log INFO" + count + ":" + "data: food; score: " + score + "; length: " + length + ";");
                 } else if (Data.watermelon.equals(imageIcon)) {
+                    CommonFunction.popSound();
                     score += 30;
                     length += 3;
                     count++;
-                    System.out.println("Log INFO"+ count+ ":" +"data: watermelon; score: "+ score +"; length: "+ length +";");
+                    System.out.println("Log INFO" + count + ":" + "data: watermelon; score: " + score + "; length: " + length + ";");
                 } else if (Data.bomb.equals(imageIcon)) {
+                    CommonFunction.popSound();
                     score -= 10;
                     length -= 1;
                     count++;
-                    System.out.println("Log INFO"+ count+ ":" +"data: bomb; score: "+ score +"; length: "+ length +";");
+                    System.out.println("Log INFO" + count + ":" + "data: bomb; score: " + score + "; length: " + length + ";");
                 } else if (Data.apple.equals(imageIcon)) {
+                    CommonFunction.popSound();
                     score += 50;
                     length += 2;
                     count++;
-                    System.out.println("Log INFO"+ count+ ":" +"data: apple; score: "+ score +"; length: "+ length +";");
+                    System.out.println("Log INFO" + count + ":" + "data: apple; score: " + score + "; length: " + length + ";");
                 } else if (Data.death.equals(imageIcon)) {
+                    CommonFunction.popSound();
                     init();
                     Dead();
                     count++;
-                    System.out.println("Log INFO"+ count+ ":" +"data: you died; score: "+ score +"; length: "+ length +";");
+                    System.out.println("Log INFO" + count + ":" + "data: you died; score: +" + score + "; length: " + length + ";");
                 } else if (Data.strawberry.equals(imageIcon)) {
+                    CommonFunction.popSound();
                     score += 20;
                     length += 2;
-                    System.out.println("Log INFO"+ count+ ":" +"data: strawberry; score: "+ score +"; length: "+ length +";");
-                }
-                try {
-                    Sound sound= new Sound();
-                    sound.playback(Data.chillSoundURL.getFile(), 100, false);
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
+                    System.out.println("Log INFO" + count + ":" + "data: strawberry; score: " + score + "; length: " + length + ";");
                 }
 
                 int nums = num.nextInt(6);
@@ -351,7 +350,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     public void isDeath() {
         if (snakeX[0] >= 850 || snakeY[0] >= 650) {
-           Dead();
+            Dead();
         }
     }
 }
