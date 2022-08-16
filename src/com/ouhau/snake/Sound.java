@@ -34,7 +34,7 @@ public class Sound {
     public void playback2(String filePath, long millis) throws URISyntaxException {
 
             String url = filePath.toString();
-            path = path.replaceAll("snakeGame\\.jar","Chill.wav");
+            path = path.replaceAll("snakeGame\\.jar","Pop.wav");
             System.out.println("this jar path:="+path);
             File file = new File(path);
             if (file == null || !file.exists() || file.isDirectory()){

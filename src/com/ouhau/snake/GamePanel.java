@@ -289,7 +289,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                 } else if (Data.watermelon.equals(imageIcon)) {
                     CommonFunction.popSound();
                     score += 30;
-                    length += 3;
+                    length += 4;
                     count++;
                     System.out.println("Log INFO" + count + ":" + "data: watermelon; score: " + score + "; length: " + length + ";");
                 } else if (Data.bomb.equals(imageIcon)) {
@@ -300,7 +300,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     System.out.println("Log INFO" + count + ":" + "data: bomb; score: " + score + "; length: " + length + ";");
                 } else if (Data.apple.equals(imageIcon)) {
                     CommonFunction.popSound();
-                    score += 50;
+                    score += 20;
                     length += 2;
                     count++;
                     System.out.println("Log INFO" + count + ":" + "data: apple; score: " + score + "; length: " + length + ";");
