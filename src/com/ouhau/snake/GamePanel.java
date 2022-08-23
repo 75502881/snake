@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
-import com.ouhau.snake.CommonFunction.*;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
@@ -63,13 +62,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     //snake die code
     public void Dead() {
         isFail = true;
-    }
-
-    //Don't use this!!
-    //This will be delete!!
-    @Deprecated
-    public void kill() {
-        Dead();
     }
 
     //game variable setup constructor
@@ -279,45 +271,46 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                 }
             }
 
-            if (snakeX[0] == foodX && snakeY[0] == foodY) {
-                if (Data.food.equals(imageIcon)) {
-                    CommonFunction.popSound();
-                    score += 10;
-                    length += 1;
-                    count++;
-                    System.out.println("Log INFO" + count + ":" + "data: food; score: " + score + "; length: " + length + ";");
-                } else if (Data.watermelon.equals(imageIcon)) {
-                    CommonFunction.popSound();
-                    score += 30;
-                    length += 4;
-                    count++;
-                    System.out.println("Log INFO" + count + ":" + "data: watermelon; score: " + score + "; length: " + length + ";");
-                } else if (Data.bomb.equals(imageIcon)) {
-                    CommonFunction.popSound();
-                    score -= 30;
-                    length -= 3;
-                    count++;
-                    System.out.println("Log INFO" + count + ":" + "data: bomb; score: " + score + "; length: " + length + ";");
-                } else if (Data.apple.equals(imageIcon)) {
-                    CommonFunction.popSound();
-                    score += 20;
-                    length += 2;
-                    count++;
-                    System.out.println("Log INFO" + count + ":" + "data: apple; score: " + score + "; length: " + length + ";");
-                } else if (Data.death.equals(imageIcon)) {
-                    CommonFunction.popSound();
-                    init();
-                    Dead();
-                    count++;
-                    System.out.println("Log INFO" + count + ":" + "data: you died; score: +" + score + "; length: " + length + ";");
-                } else if (Data.strawberry.equals(imageIcon)) {
-                    CommonFunction.popSound();
-                    score += 20;
-                    length += 2;
-                    System.out.println("Log INFO" + count + ":" + "data: strawberry; score: " + score + "; length: " + length + ";");
-                }
+                if (snakeX[0] == foodX && snakeY[0] == foodY) {
+                    if (Data.food.equals(imageIcon)) {
+                        CommonFunction.popSound();
+                        score += 10;
+                        length += 1;
+                        count++;
+                        System.out.println("Log INFO" + count + ":" + "data: food; score: " + score + "; length: " + length + ";");
+                    } else if (Data.watermelon.equals(imageIcon)) {
+                        CommonFunction.popSound();
+                        score += 30;
+                        length += 4;
+                        count++;
+                        System.out.println("Log INFO" + count + ":" + "data: watermelon; score: " + score + "; length: " + length + ";");
+                    } else if (Data.bomb.equals(imageIcon)) {
+                        CommonFunction.popSound();
+                        score -= 30;
+                        length -= 3;
+                        count++;
+                        System.out.println("Log INFO" + count + ":" + "data: bomb; score: " + score + "; length: " + length + ";");
+                    } else if (Data.apple.equals(imageIcon)) {
+                        CommonFunction.popSound();
+                        score += 20;
+                        length += 2;
+                        count++;
+                        System.out.println("Log INFO" + count + ":" + "data: apple; score: " + score + "; length: " + length + ";");
+                    } else if (Data.death.equals(imageIcon)) {
+                        CommonFunction.popSound();
+                        init();
+                        Dead();
+                        count++;
+                        System.out.println("Log INFO" + count + ":" + "data: you died; score: +" + score + "; length: " + length + ";");
+                    } else if (Data.strawberry.equals(imageIcon)) {
+                        CommonFunction.popSound();
+                        score += 20;
+                        length += 2;
+                        System.out.println("Log INFO" + count + ":" + "data: strawberry; score: " + score + "; length: " + length + ";");
+                    }
 
                 int nums = num.nextInt(6);
+
                 if (nums == 1) {
                     imageIcon = Data.food;
                 } else if (nums == 2) {
@@ -341,6 +334,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     Dead();
                 }
                 isDeath();
+            }
+
+            if (length<=1){
+                Dead();
             }
 
             repaint();
