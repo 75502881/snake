@@ -294,8 +294,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     System.out.println("Log INFO" + count + ":" + "data: watermelon; score: " + score + "; length: " + length + ";");
                 } else if (Data.bomb.equals(imageIcon)) {
                     CommonFunction.popSound();
-                    score -= 10;
-                    length -= 1;
+                    score -= 30;
+                    length -= 3;
                     count++;
                     System.out.println("Log INFO" + count + ":" + "data: bomb; score: " + score + "; length: " + length + ";");
                 } else if (Data.apple.equals(imageIcon)) {
