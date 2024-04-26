@@ -12,5 +12,5 @@
     1. click this button.
     2. wait.
 
-#### Copyright (c) 2021~2022 by ouhaocheng
+#### Copyright (c) 2021~2022 by oukousin
 
